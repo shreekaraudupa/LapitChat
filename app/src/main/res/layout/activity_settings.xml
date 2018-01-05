@@ -52,12 +52,13 @@
 
     <Button
         android:id="@+id/btnImg"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/btnStatus"
         android:layout_marginBottom="18dp"
-        android:background="#123"
+        android:background="#000"
         android:textColor="#FFF"
         android:text="Change IMG" />
 </RelativeLayout>
