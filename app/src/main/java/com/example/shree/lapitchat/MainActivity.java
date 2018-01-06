@@ -1,5 +1,7 @@
 package com.example.shree.lapitchat;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    AlertDialog.Builder alertDialogBuilder ;
+
     //private Toolbar mtoolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +25,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
-
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("You want to Logout?");
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        alertDialogBuilder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
         /*
         mtoolbar=(Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mtoolbar);
@@ -58,15 +76,32 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
          super.onOptionsItemSelected(item);
          if(item.getItemId()==R.id.main_logout){
-             FirebaseAuth.getInstance().signOut();
-             sendToStart();
+             alertDialogBuilder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialogInterface, int i) {
+                     FirebaseAuth.getInstance().signOut();
+                     sendToStart();
+                     dialogInterface.cancel();
+                 }
+             });
+             alertDialogBuilder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialogInterface, int i) {
+                     Toast.makeText(getApplicationContext(),"Still logged in",Toast.LENGTH_LONG).show();
+
+                 }
+             });
+
+             alertDialogBuilder.show();
          }else if(item.getItemId()==R.id.main_setting){
              Intent settingIntent=new Intent(MainActivity.this,SettingsActivity.class);
              startActivity(settingIntent);
 
-         }else if(item.getItemId()==R.id.main_setting){
+         }else if(item.getItemId()==R.id.about){
              Toast.makeText(getApplicationContext(),"Developed by Shree",Toast.LENGTH_SHORT).show();
+
          }
+
          return true;
     }
 }
