@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#944AF6"
     tools:context="com.example.shree.lapitchat.ReviewActivity">
 
     <TextView
@@ -27,7 +28,7 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="28dp"
         android:text="-> Rating"
-        android:textColor="#000"
+        android:textColor="#FFF"
         android:textSize="25dp" />
 
     <Button
@@ -37,7 +38,8 @@
         android:layout_alignEnd="@+id/textView6"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="34dp"
-        android:text="Submit" />
+        android:text="Submit"
+        />
 
     <RadioGroup
         android:id="@+id/rgRating"
@@ -90,10 +92,9 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView7"
         android:layout_below="@+id/rgRating"
-        android:layout_marginTop="14dp"
         android:text="-> Feedback"
-        android:textColor="#000"
-        android:textSize="25dp"/>
+        android:textColor="#FFF"
+        android:textSize="25dp" />
 
 
 
@@ -106,6 +107,7 @@
             android:layout_marginTop="26dp"
             android:text="1.Upload Pic"
             android:textSize="20dp"
+            android:textColor="#FFF"
             android:layout_marginBottom="50dp"/>
 
     <Button
@@ -115,7 +117,9 @@
         android:layout_alignBaseline="@+id/textView10"
         android:layout_alignBottom="@+id/textView10"
         android:layout_toEndOf="@+id/btnReviewSubmit"
-        android:text="Camera" />
+        android:text="Camera"
+        android:textColor="#FFF"
+        android:background="#123"/>
 
     <TextView
         android:id="@+id/textView12"
@@ -124,6 +128,7 @@
         android:layout_alignStart="@+id/textView10"
         android:layout_below="@+id/textView10"
         android:text="2.Upload File"
+        android:textColor="#FFF"
         android:textSize="20dp" />
 
     <Button
@@ -133,9 +138,12 @@
         android:layout_alignBaseline="@+id/textView12"
         android:layout_alignBottom="@+id/textView12"
         android:layout_alignStart="@+id/btnCamera"
-        android:text="Upload" />
+        android:text="Upload"
+        android:textColor="#FFF"
+        android:background="#123"/>
 
     <TextView
+        android:textColor="#FFF"
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
