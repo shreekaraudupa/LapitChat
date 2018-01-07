@@ -7,14 +7,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
+    Button btnFilter;
+    Spinner spnYear,spnDistrict,spnType,spnCategory;
     private FirebaseAuth mAuth;
     AlertDialog.Builder alertDialogBuilder ;
 
@@ -24,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnFilter=findViewById(R.id.btnFilter);
         mAuth = FirebaseAuth.getInstance();
+        spnYear=findViewById(R.id.spnYear);
+        spnDistrict=findViewById(R.id.spnDistrict);
+        spnType=findViewById(R.id.spnType);
+        spnCategory=findViewById(R.id.spnCategory);
+
         alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("You want to Logout?");
         alertDialogBuilder.setCancelable(true);
@@ -45,6 +59,36 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setTitle("lapitChat");
         */
+
+        ArrayList year=new ArrayList();
+        year.add("2017");
+        year.add("2016");
+        year.add("2015");
+        ArrayAdapter yearAdp=new ArrayAdapter(this,android.R.layout.simple_spinner_item,year);
+        spnYear.setAdapter(yearAdp);
+
+        ArrayList district=new ArrayList();
+        district.add("Mumbai");
+        district.add("Goa");
+        district.add("Pune");
+        ArrayAdapter districtAdp =new ArrayAdapter(this,android.R.layout.simple_spinner_item,district);
+        //spnYear.setAdapter(districtAdp);
+
+        ArrayList type=new ArrayList();
+        type.add("Road");
+        type.add("Building");
+        type.add("Bridge");
+        ArrayAdapter typeAdp=new ArrayAdapter(this,android.R.layout.simple_spinner_item,type);
+        //spnYear.setAdapter(typeAdp);
+
+        btnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent filter=new Intent(MainActivity.this,ListOfProjects.class);
+                startActivity(filter);
+            }
+        });
+
     }
     @Override
     public void onStart() {
@@ -104,4 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
          return true;
     }
+
+
 }
